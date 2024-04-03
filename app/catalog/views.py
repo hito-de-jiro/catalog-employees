@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Employee
+
+
+def employee_hierarchy(request):
+    employees = Employee.objects.filter(manager=None)
+    return render(request, 'catalog/employees.html', {'employees': employees})
