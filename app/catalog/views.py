@@ -4,5 +4,5 @@ from .models import Employee
 
 
 def employee_hierarchy(request):
-    employees = Employee.objects.filter(manager=None)
+    employees = Employee.objects.all()
     return render(request, 'catalog/employees.html', {'employees': employees})

@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Employee Hierarchy</h1>
-    <ul>
+    <ul id="employee">
         {% for employee in employees %}
-            <li>{{ employee.name }}</li>
-            {% if employee.subordinates.all %}
-                <ul>
-                    {% for subordinate in employee.subordinates.all %}
-                        <li>{{ subordinate.name }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            <li><span class="caret">{{ employee.full_name }}, position: {{ employee.position }}</span>
+                {% if employee.subordinates.all %}
+                    <ul class="nested">
+                        {% for subordinate in employee.subordinates.all %}
+                            <li>{{ subordinate.full_name }}, position: {{ subordinate.position }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+    </script>
 {% endblock %}
+ 
