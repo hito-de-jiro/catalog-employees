@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Employee list{% endblock %}
+{% block content %}
+    <h1>Employee List</h1>
+    <table>
+        <tr>
+            <th><a href="?sort_by=full_name">Full Name</a></th>
+            <th><a href="?sort_by=position">Position</a></th>
+            <th><a href="?sort_by=hire_date">Hire Date</a></th>
+            <th><a href="?sort_by=salary">Salary</a></th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.full_name }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.hire_date }}</td>
+                <td>{{ employee.salary }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

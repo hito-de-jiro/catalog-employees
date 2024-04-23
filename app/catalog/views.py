@@ -12,4 +12,4 @@ def employee_list(request):
     employees = Employee.objects.all()
     sort_by = request.GET.get('sort_by', 'full_name')
     employees = employees.order_by(sort_by)
-    return render(request, 'employee_list.html', {'employees': employees})
+    return render(request, 'catalog/employee_list.html', {'employees': employees})
