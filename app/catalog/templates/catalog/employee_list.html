@@ -2,6 +2,10 @@
 {% block title %}Employee list{% endblock %}
 {% block content %}
     <h1>Employee List</h1>
+    <form method="GET" action="{% url 'employee_search' %}">
+        <input type="text" name="search_query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
     <table>
         <tr>
             <th><a href="?sort_by=full_name">Full Name</a></th>
