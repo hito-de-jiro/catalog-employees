@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Employee data{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Employee data</h1>
+        <table id="employee-table" class="display">
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Position</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.full_name }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.hire_date }}</td>
+                    <td>{{ employee.salary }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            new DataTable('#employee-table');
+        });
+
+    </script>
+{% endblock %}
