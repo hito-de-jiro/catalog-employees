@@ -1,29 +1,35 @@
 {% extends "base.html" %}
+{% block title %}Employee data{% endblock %}
 {% block content %}
-    <h1>Employee Hierarchy</h1>
-    <ul id="employee">
-        {% for employee in employees %}
-            <li><span class="caret">{{ employee.full_name }}, position: {{ employee.position }}</span>
-                {% if employee.subordinates.all %}
-                    <ul class="nested">
-                        {% for subordinate in employee.subordinates.all %}
-                            <li>{{ subordinate.full_name }}, position: {{ subordinate.position }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-    <script>
-        var toggler = document.getElementsByClassName("caret");
-        var i;
+    <div class="container">
+        <h1 class="text-center">Employee data</h1>
+        <table id="employee-table" class="display">
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Position</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.full_name }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.hire_date }}</td>
+                    <td>{{ employee.salary }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-        for (i = 0; i < toggler.length; i++) {
-            toggler[i].addEventListener("click", function () {
-                this.parentElement.querySelector(".nested").classList.toggle("active");
-                this.classList.toggle("caret-down");
-            });
-        }
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            new DataTable('#employee-table');
+        });
+
     </script>
 {% endblock %}
- 

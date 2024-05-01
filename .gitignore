@@ -13,5 +13,7 @@ media
 # <django-project-name>/staticfiles/
 
 # PyCharm template
-/venv
-.idea
+/venv/
+.idea!/
+.env
+/INFO.txt
