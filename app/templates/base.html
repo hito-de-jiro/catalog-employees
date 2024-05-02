@@ -8,16 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="{% static 'catalog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="{% static 'catalog/css/datatables.min.css' %}">
+
     <link rel="stylesheet" href="{% static 'catalog/css/style.css' %}">
-    <script src="{% static 'catalog/js/jquery-3.7.1.js' %}"></script>
-    <script src="{% static 'catalog/js/datatables.min.js' %}"></script>
+
     <title>{% block title %}Main{% endblock %}</title>
 </head>
 <body>
 {% block content %}
 
 {% endblock %}
+<script src="{% static 'catalog/js/jquery-3.7.1.js' %}"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+<script src="{% static 'catalog/js/datatables.min.js' %}"></script>
 <script src="{% static 'catalog/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

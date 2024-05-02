@@ -3,13 +3,14 @@
 {% block content %}
     <div class="container">
         <h1 class="text-center">Employee data</h1>
-        <table id="employee-table" class="display">
+        <table id="employee-table" class="display" style="width:100%">
             <thead>
             <tr>
                 <th>Full Name</th>
                 <th>Position</th>
                 <th>Hire Date</th>
                 <th>Salary</th>
+
             </tr>
             </thead>
             <tbody>
@@ -26,10 +27,8 @@
     </div>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             new DataTable('#employee-table');
         });
-
     </script>
 {% endblock %}

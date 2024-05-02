@@ -3,7 +3,7 @@ from django_seed import Seed
 
 seeder = Seed.seeder()
 
-seeder.add_entity(Employee, 100, {
+seeder.add_entity(Employee, 1000, {
     'full_name': lambda x: seeder.faker.name(),
     'position': lambda x: seeder.faker.job(),
     'hire_date': lambda x: seeder.faker.date_this_century(),
