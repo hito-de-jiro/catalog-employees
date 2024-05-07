@@ -6,20 +6,23 @@
         <table id="employee-table" class="display" style="width:100%">
             <thead>
             <tr>
+                <th>ID</th>
                 <th>Full Name</th>
                 <th>Position</th>
                 <th>Hire Date</th>
                 <th>Salary</th>
-
+                <th>Manager</th>
             </tr>
             </thead>
             <tbody>
             {% for employee in employees %}
                 <tr>
+                    <td>{{ employee.id }}</td>
                     <td>{{ employee.full_name }}</td>
                     <td>{{ employee.position }}</td>
                     <td>{{ employee.hire_date }}</td>
                     <td>{{ employee.salary }}</td>
+                    <td>{{ employee.manager }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -28,7 +31,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new DataTable('#employee-table');
+            $('#employee-table').DataTable();
         });
     </script>
 {% endblock %}
