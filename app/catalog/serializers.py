@@ -4,14 +4,15 @@ from .models import Employee
 
 class EmployeeSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    manager = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Employee
-        fields = (
+        fields = [
+            'id',
             'full_name',
             'position',
             'hire_date',
             'salary',
             'manager'
-        )
+        ]
+        datatables_always_serialize = ('id',)

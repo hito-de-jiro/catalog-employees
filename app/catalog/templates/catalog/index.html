@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-<h1>Index</h1>
+    <div class="container">
+        <h1 class="text-center">Employee data</h1>
+        <table id="employee-table" class="display" style="width:100%">
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Position</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+                <th>Manager</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#employee-table').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "api/employee/?format=datatables", 
+                    "type": "GET"
+                },
+                    
+                "columns": [
+                    {"data": "full_name"},
+                    {"data": "position"},
+                    {"data": "hire_date"},
+                    {"data": "salary"},
+                    {"data": "manager"}
+                ]
+            });
+        });
+    </script>
 {% endblock %}
