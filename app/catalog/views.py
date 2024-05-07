@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+
 from .models import Employee
 from .serializers import EmployeeSerializer
-
-from django.http import JsonResponse
 
 
 def index(request):

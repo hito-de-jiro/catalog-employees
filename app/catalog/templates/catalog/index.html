@@ -6,6 +6,7 @@
         <table id="employee-table" class="display" style="width:100%">
             <thead>
             <tr>
+                <th>ID</th>
                 <th>Full Name</th>
                 <th>Position</th>
                 <th>Hire Date</th>
@@ -21,11 +22,11 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "api/employee/?format=datatables", 
+                    "url": "api/employee/?format=datatables",
                     "type": "GET"
                 },
-                    
                 "columns": [
+                    {"data": "id"},
                     {"data": "full_name"},
                     {"data": "position"},
                     {"data": "hire_date"},
