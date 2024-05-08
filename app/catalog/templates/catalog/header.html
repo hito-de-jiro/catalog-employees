@@ -1,0 +1,18 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <a class="navbar-brand" href="#"><h1>Catalog</h1></a>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                
+            </ul>
+            <div class="inline my-3 my-md-0">
+                {% if user.is_authenticated %}
+                    <span class="mr-sm-2">Hello, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}" class="my-2 my-sm-0">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Log In</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>

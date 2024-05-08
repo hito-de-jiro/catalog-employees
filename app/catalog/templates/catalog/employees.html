@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Employee data{% endblock %}
 {% block content %}
+{% include 'catalog/header.html' %}
+    
     <div class="container">
         <h1 class="text-center">Employee data</h1>
         <table id="employee-table" class="display" style="width:100%">
@@ -22,7 +24,11 @@
                     <td>{{ employee.position }}</td>
                     <td>{{ employee.hire_date }}</td>
                     <td>{{ employee.salary }}</td>
-                    <td>{{ employee.manager }}</td>
+                    {% if employee.manager == None %}
+                        <td>Boss</td>
+                    {% else %}
+                        <td>{{ employee.manager }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

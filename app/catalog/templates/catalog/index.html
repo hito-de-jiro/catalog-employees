@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+    {% include 'catalog/header.html' %}
     <div class="container">
         <h1 class="text-center">Employee data</h1>
         <table id="employee-table" class="display" style="width:100%">
@@ -18,12 +19,12 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('#employee-table').DataTable({
+            var table = $('#employee-table').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "api/employee/?format=datatables",
-                    "type": "GET"
+                    "url": "../api/employee/?format=datatables",
+                    "type": "GET",
                 },
                 "columns": [
                     {"data": "id"},

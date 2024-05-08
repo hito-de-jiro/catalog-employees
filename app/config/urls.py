@@ -22,5 +22,6 @@ from config import settings
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('catalog/', include('catalog.urls')),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('', include('catalog.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
