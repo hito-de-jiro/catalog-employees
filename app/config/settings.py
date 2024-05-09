@@ -137,5 +137,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 50,
 }
 
+
+# Login
+LOGIN_URL = 'user-login'
 LOGIN_REDIRECT_URL = 'catalog'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = '/'
