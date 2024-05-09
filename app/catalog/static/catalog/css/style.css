@@ -1,61 +1,16 @@
-ul, #employee {
-    list-style-type: none;
+.container_form {
+    padding-top: 10em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    text-align: center;
+.body {
+    background: red;
 }
 
-.text-left {
-  text-align: left;
+.add_column {
+    border: 2px solid #00A78E;
 }
 
-.text-right {
-  text-align: right;
-}
 
-.text-center {
-  text-align: center;
-}
-
-#employee {
-    margin: 0;
-    padding: 0;
-}
-
-.caret {
-    cursor: pointer;
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none;
-}
-
-.caret::before {
-    content: "\25B6";
-    color: black;
-    display: inline-block;
-    margin-right: 6px;
-}
-
-.caret-down::before {
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Safari */
-' transform: rotate(90 deg);
-}
-
-.nested {
-    display: none;
-}
-
-.active {
-    display: block;
-}
-
-.nested {
-    display: none;
-}
-
-.active {
-    display: block;
+.button #add-form {
+    border: #721c24;
 }
