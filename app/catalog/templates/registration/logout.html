@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Log In{% endblock %}
+{% block title %}Logout{% endblock title %}
 
 {% block content %}
     <div class="container col-lg-6">
         <div class="justify-content-center">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <div class="card-header justify-content-center">
-                    <h3 class="font-weight-light my-1"><b>Welcome, {{ user.first_name.title|default:"Guest" }}</b></h3>
+                    <h3 class="font-weight-light my-1"><b>Are you leaving?</b></h3>
                 </div>
                 <div class="card-body">
                     <div class="col-md-10 offset-md-1">
                         <p class="card-text text-center">
-                            This is the <b>Catalog employees</b>.<br>
-                            To use the service, <b>log in</b> or <b>register</b>.
+                            Thanks for your time.<br>
+                            Waiting for your return.
                         </p>
                     </div>
                     <hr class="border-1 opacity-50">
                     <div class="col-md-10 offset-md-1">
                         <div class="form-group mt-0 mb-1 text-center">
-                            <a class="btn btn-primary col-5" href="{% url 'user-login' %}" role="button">Sign in</a>
+                            <a href="{% url 'user-login' %}" class="btn btn-primary col-md-5">Sign in again</a>
                         </div>
                     </div>
                 </div>
@@ -30,5 +30,4 @@
             </div>
         </div>
     </div>
-    
-{% endblock %}
+{% endblock content %}

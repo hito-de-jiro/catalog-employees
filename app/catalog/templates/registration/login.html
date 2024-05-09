@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Login Page{% endblock %}
 {% block content %}
-    <div class="form-content my-3 p-3">
+    <div class="form-content my-3 p-3 mt-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
                         <div class="card-header justify-content-center">
-                          <h3 class="font-weight-light my-1 text-center">Sign In</h3>
+                          <h3 class="font-weight-light my-1 text-center"><b>Sign In</b></h3>
                         </div>
                         {% if form.errors %}
                             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -53,7 +53,7 @@
                                 <div class="form-row">
                                     <div class="col-md-10 offset-md-1">
                                         <div class="form-group mt-0 mb-1">
-                                          <button name="login" class="col-md-12 btn btn-dark" id="login">Sign in</button>
+                                          <button name="login" class="col-md-12 btn btn-primary" id="login">Sign in</button>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="card-footer text-center">
                             <div class="small">
-                                <a href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
+                                <a href="{% url 'user-register' %}">Don't have an account yet? Go to signup</a><br>
                             </div>
                         </div>
                     </div>
