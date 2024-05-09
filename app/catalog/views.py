@@ -1,15 +1,23 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.views import View
 from rest_framework import viewsets
 
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm, UpdateUserForm
 from .models import Employee
 from .serializers import EmployeeSerializer
 
 
+def home(request):
+    return render(request, 'catalog/home.html')
+
+
+@login_required
 def index(request):
     # server side / ajax
     return render(request, 'catalog/index.html')
@@ -45,23 +53,64 @@ def employee_data(request):
     return JsonResponse(data, safe=False)
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
+class RegisterView(View):
+    form_class = RegisterForm
+    initial = {'key': 'value'}
+    template_name = 'registration/register.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        # will redirect to the home page if a user tries to access the register page while logged in
+        if request.user.is_authenticated:
+            return redirect(to='/')
+
+        # else process dispatch as it otherwise normally would
+        return super(RegisterView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
         if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
+            form.save()
 
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('catalog')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login! Try again!')
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
 
+            return redirect(to='/')
+
+        return render(request, self.template_name, {'form': form})
+
+
+class CustomLoginView(LoginView):
+    form_class = LoginForm
+
+    def form_valid(self, form):
+        remember_me = form.cleaned_data.get('remember_me')
+
+        if not remember_me:
+            # set session expiry to 0 seconds. So it will automatically close the session after the browser is closed.
+            self.request.session.set_expiry(0)
+
+            # Set session as modified to force data updates/cookie to be saved.
+            self.request.session.modified = True
+
+        # else browser session will be as long as the session cookie time "SESSION_COOKIE_AGE" defined in settings.py
+        return super(CustomLoginView, self).form_valid(form)
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='user-profile')
     else:
-        form = LoginForm()
+        user_form = UpdateUserForm(instance=request.user)
 
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'registration/profile.html', {'user_form': user_form})
